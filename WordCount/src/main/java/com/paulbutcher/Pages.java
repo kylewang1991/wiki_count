@@ -35,35 +35,54 @@ class Pages implements Iterable<Page> {
       reader = XMLInputFactory.newInstance().createXMLEventReader(new FileInputStream(fileName));
     }
 
-    public boolean hasNext() { return remainingPages > 0; }
+    public boolean hasNext() { 
+      if(remainingPages <= 0) {
+        return false;
+      }
+
+      try {
+        XMLEvent event;
+
+        while (true) {
+          event = reader.nextEvent();
+          if (event.isStartElement()) {
+            if (event.asStartElement().getName().getLocalPart().equals("page"))
+            {
+              return true;
+            }
+          }
+        }
+      }
+      catch (NoSuchElementException e) {
+        return false;
+      }
+      catch (Exception e) {
+        throw e;
+      }
+
+      return false;
+    }
 
     public Page next() {
       try {
         XMLEvent event;
         String title = "";
         String text = "";
-        while (true) {
-          event = reader.nextEvent();
-          if (event.isStartElement()) {
-            if (event.asStartElement().getName().getLocalPart().equals("page")) {
-              while (true) {
-                event = reader.nextEvent();
-                if (event.isStartElement()) {
-                  String name = event.asStartElement().getName().getLocalPart();
-                  if (name.equals("title"))
-                    title = reader.getElementText();
-                  else if (name.equals("text")) 
-                    text = reader.getElementText();
-                } else if (event.isEndElement()) {
-                  if (event.asEndElement().getName().getLocalPart().equals("page")) {
-                    --remainingPages;
-                    return new Page(title, text);
-                  }
-                }
+          while (true) {
+            event = reader.nextEvent();
+            if (event.isStartElement()) {
+              String name = event.asStartElement().getName().getLocalPart();
+              if (name.equals("title"))
+                title = reader.getElementText();
+              else if (name.equals("text"))
+                text = reader.getElementText();
+            } else if (event.isEndElement()) {
+              if (event.asEndElement().getName().getLocalPart().equals("page")) {
+                --remainingPages;
+                return new Page(title, text);
               }
             }
           }
-        }
       } catch (Exception e) {}
       throw new NoSuchElementException();
     }
