@@ -32,7 +32,20 @@ class Words implements Iterable<String> {
       end = wordBoundary.next();
     }
 
-    public boolean hasNext() { return end != BreakIterator.DONE; }
+    public boolean hasNext() {
+      while(end != BreakIterator.DONE) {
+
+        if (Character.isLetter(text.charAt(start))) {
+          return true;
+        }
+        else{
+            start = end;
+            end = wordBoundary.next();
+        }
+      }
+
+      return false;
+    }
 
     public String next() {
       String s = text.substring(start, end);
