@@ -11,6 +11,7 @@ package com.paulbutcher;
 import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.XMLEvent;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
@@ -56,8 +57,8 @@ class Pages implements Iterable<Page> {
       catch (NoSuchElementException e) {
         return false;
       }
-      catch (Exception e) {
-        throw e;
+      catch (XMLStreamException e) {
+        System.out.println("XML format error");
       }
 
       return false;
