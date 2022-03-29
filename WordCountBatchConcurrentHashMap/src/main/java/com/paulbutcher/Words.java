@@ -10,6 +10,7 @@ package com.paulbutcher;
 
 import java.text.BreakIterator;
 import java.util.Iterator;
+import java.util.Locale;
 
 class Words implements Iterable<String> {
 
@@ -32,23 +33,25 @@ class Words implements Iterable<String> {
       end = wordBoundary.next();
     }
 
-    public boolean hasNext() { return end != BreakIterator.DONE; }
-
-    public String next() {
-      String s = "";
+    public boolean hasNext() {
       while(end != BreakIterator.DONE) {
 
         if (Character.isLetter(text.charAt(start))) {
-          s = text.substring(start, end);
-          start = end;
-          end = wordBoundary.next();
-          break;
+          return true;
         }
-
-        start = end;
-        end = wordBoundary.next();
+        else{
+            start = end;
+            end = wordBoundary.next();
+        }
       }
 
+      return false;
+    }
+
+    public String next() {
+      String s = text.substring(start, end).toLowerCase();
+      start = end;
+      end = wordBoundary.next();
       return s;
     }
 

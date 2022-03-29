@@ -15,7 +15,7 @@ import java.util.Map.Entry;
 
 public class WordCount {
   private static final HashMap<String, Integer> counts = 
-    new HashMap<String, Integer>();
+    new HashMap<String, Integer>(0x10000);
 
   public static void main(String[] args) throws Exception {
     long start = System.currentTimeMillis();
@@ -60,7 +60,6 @@ public class WordCount {
     List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(entrySet);
 
     Comparator<Map.Entry<String, Integer>> comparator = new Comparator<Map.Entry<String, Integer>>() {
-      //降序排序
       @Override
       public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
         //return o1.getValue().compareTo(o2.getValue());

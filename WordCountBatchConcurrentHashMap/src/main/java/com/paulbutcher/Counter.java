@@ -23,7 +23,7 @@ class Counter implements Runnable {
                  ConcurrentMap<String, Integer> counts) {
     this.queue = queue;
     this.counts = counts;
-    localCounts = new HashMap<String, Integer>();
+    localCounts = new HashMap<String, Integer>(0x10000);
   }
 
   public void run() {
@@ -49,6 +49,11 @@ class Counter implements Runnable {
   }
 
   private void mergeCounts() {
+//    localCounts.forEach((key, value) -> counts.merge(key, value, (oldValue, newValue) -> oldValue + newValue ));
+
+
+
+
     for (Map.Entry<String, Integer> e: localCounts.entrySet()) {
       String word = e.getKey();
       Integer count = e.getValue();

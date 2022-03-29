@@ -20,7 +20,7 @@ class Parser implements Runnable {
 
   public void run() {
     try {
-      Iterable<Page> pages = new Pages(100000, "enwiki.xml");
+      Iterable<Page> pages = new Pages(100000, "C:\\Users\\Zhengwei Wang\\Documents\\FUDAN\\并发理论\\wiki_count\\enwiki-latest-pages-articles.xml");
       for (Page page: pages)
         queue.put(page);
     } catch (Exception e) { e.printStackTrace(); }
