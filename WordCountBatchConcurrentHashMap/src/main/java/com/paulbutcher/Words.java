@@ -54,6 +54,15 @@ class Words implements Iterable<String> {
       end = wordBoundary.next();
       return s;
     }
+ 
+    // public boolean hasNext() { return end != BreakIterator.DONE; }
+
+    // public String next() {
+    //   String s = text.substring(start, end);
+    //   start = end;
+    //   end = wordBoundary.next();
+    //   return s;
+    // }
 
     public void remove() { throw new UnsupportedOperationException(); }
   }
