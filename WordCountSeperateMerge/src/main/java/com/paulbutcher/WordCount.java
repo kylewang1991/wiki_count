@@ -23,9 +23,10 @@ public class WordCount {
 
     HashMap<String, Integer> counts = new HashMap<String, Integer>(0x10000);
 
-    System.out.println(Runtime.getRuntime().availableProcessors());
-
     ExecutorService executor = Executors.newCachedThreadPool();
+
+    String yamlFile = "src\\prohibitWord.yaml";
+    Counter.generateProhibitTable(yamlFile);
 
     for (int i = 0; i < NUM_COUNTERS; ++i)
       executor.execute(new Counter(queue, merge_queue));
