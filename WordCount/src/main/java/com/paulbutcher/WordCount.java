@@ -19,7 +19,7 @@ public class WordCount {
 
   public static void main(String[] args) throws Exception {
     long start = System.currentTimeMillis();
-    Iterable<Page> pages = new Pages(100000, "C:\\Users\\Zhengwei Wang\\Documents\\FUDAN\\并发理论\\wiki_count\\enwiki-latest-pages-articles.xml");
+    Iterable<Page> pages = new Pages(100000, "src\\..\\..\\enwiki-latest-pages-articles.xml");
     int count_page = 0;
     for(Page page: pages) {
       Iterable<String> words = new Words(page.getText());
