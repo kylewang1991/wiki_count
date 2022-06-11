@@ -31,12 +31,12 @@
 
 见下图
 
-[Result 1](https://raw.githubusercontent.com/kylewang1991/wiki_count/main/image/result_1.jpg)
+![Result 1](https://raw.githubusercontent.com/kylewang1991/wiki_count/main/image/result_1.jpg)
 
-[Result 2](https://raw.githubusercontent.com/kylewang1991/wiki_count/main/image/result_2.jpg)
+![Result 2](https://raw.githubusercontent.com/kylewang1991/wiki_count/main/image/result_2.jpg)
 
 以上加速度比的base line为串行模型结果。
 
 最终统计结果：
 
-[Final result](https://raw.githubusercontent.com/kylewang1991/wiki_count/main/image/final_result.jpg)
+![Final result](https://raw.githubusercontent.com/kylewang1991/wiki_count/main/image/final_result.jpg)
